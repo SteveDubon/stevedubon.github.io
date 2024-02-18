@@ -13,7 +13,7 @@ Originally, this code was part of a talk given at [OpenVis Conf](http://openvisc
 [Check out the talk and additional materials!](http://vallandingham.me/think_you_can_scroll.html)
 
 
-## Run App
+## Run Action Runner Locally
 - Open terminal
 - Go to directory
 ```shell
