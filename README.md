@@ -11,3 +11,21 @@ If you are looking for the old D3v3 code, check out the [old-d3v3 branch](https:
 Originally, this code was part of a talk given at [OpenVis Conf](http://openvisconf.com/) about scrollytelling.
 
 [Check out the talk and additional materials!](http://vallandingham.me/think_you_can_scroll.html)
+
+
+## Run App
+- Open terminal
+- Go to directory
+```shell
+    cd ~/Desktop/actions-runner
+```
+- Run server
+```shell
+    ./run.cmd
+```
+
+- Stop server: 
+```shell
+    ctrl + c
+    y
+```
