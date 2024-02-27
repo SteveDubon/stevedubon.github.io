@@ -1,4 +1,32 @@
+/* Overview CSS */
+.body{
+  color:#FEF8F6;
+}
 
+.overview{
+  width: 75%;
+  height: 50%;
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.maintitle{
+  color:#FFA63D;
+  text-align: center;
+}
+
+.subtitle{
+  color:#2B2D37;
+  text-align: center;
+}
+
+.mainparagraph{
+  color:#2B2D37;
+  text-align: center;
+}
+
+/* Data Viz CSS */
 .container {
   width: 890px;
 }
