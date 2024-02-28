@@ -1,7 +1,12 @@
 /* Overview CSS */
 .body{
   color:#FEF8F6;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
   max-width: 1500px;
+
 }
 
 .overview{
