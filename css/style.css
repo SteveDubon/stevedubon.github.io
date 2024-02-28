@@ -37,6 +37,12 @@
   margin-right: auto;
 }
 
+.vizContainer{
+  width: 100%;
+  position: sticky;
+  top: 0;
+}
+
 /* Data Viz CSS */
 .container {
   width: 1400px;
