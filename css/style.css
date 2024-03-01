@@ -99,7 +99,8 @@
 }
 
 #vis .title {
-  font-size:120px;
+  /*font-size:120px;*/
+  font-size:30px;
   text-anchor: middle;
 }
 

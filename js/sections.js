@@ -5,6 +5,9 @@
  * using reusable charts pattern:
  * http://bost.ocks.org/mike/chart/
  */
+
+
+/* =============VIZ CONTAINER==================== */
 var scrollVis = function () {
   // constants to define the size
   // and margins of the vis area.
@@ -17,10 +20,13 @@ var scrollVis = function () {
   // index activated. When user scrolls
   // quickly, we want to call all the
   // activate functions that they pass.
+
+/* =============VIZ INDEX ORDER==================== */
   var lastIndex = -1;
   var activeIndex = 0;
 
   // Sizing for the grid visualization
+/* =============CREATING THE GRID FOR VIZ==================== */
   var squareSize = 6;
   var squarePad = 2;
   var numPerRow = width / (squareSize + squarePad);
@@ -35,6 +41,10 @@ var scrollVis = function () {
   // We will set the domain when the
   // data is processed.
   // @v4 using new scale names
+
+
+/* =============BAR CHART STUFF==================== */
+/* =============BAR CHART SCALES==================== */
   var xBarScale = d3.scaleLinear()
     .range([0, width]);
 
@@ -47,9 +57,13 @@ var scrollVis = function () {
     .domain([0, 1, 2])
     .range([0, height - 50], 0.1, 0.1);
 
+/* =============BAR CHART COLORS==================== */
   // Color is determined just by the index of the bars
   var barColors = { 0: '#008080', 1: '#399785', 2: '#5AAF8C' };
 
+
+/* =============HISTOGRAM STUFF==================== */
+/* =============HISTOGRAM SCALES==================== */
   // The histogram display shows the
   // first 30 minutes of data
   // so the range goes from 0 to 30
@@ -62,6 +76,7 @@ var scrollVis = function () {
   var yHistScale = d3.scaleLinear()
     .range([height, 0]);
 
+/* =============HISTOGRAM COLORS==================== */
   // The color translation uses this
   // scale to convert the progress
   // through the section into a
@@ -84,6 +99,8 @@ var scrollVis = function () {
     .scale(xHistScale)
     .tickFormat(function (d) { return d + ' min'; });
 
+
+/* =============STUFF TO ACTIVATE NEW SECTION==================== */
   // When scrolling to a new section
   // the activation function for that
   // section is called.
@@ -94,6 +111,8 @@ var scrollVis = function () {
   // progress through the section.
   var updateFunctions = [];
 
+
+/* =============DRAWS THE VIZ==================== */
   /**
    * chart
    *
@@ -115,16 +134,21 @@ var scrollVis = function () {
       svg.append('g');
 
 
+
+ /* =============CONTAINER FOR OTHER DRAWINGS==================== */
       // this group element will be used to contain all
       // other elements.
       g = svg.select('g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
+
+ /* =============DOING STUFF WITH THE PROVIDED DATA==================== */
       // perform some preprocessing on raw data
       var wordData = getWords(rawData);
       // filter to just include filler words
       var fillerWords = getFillerWords(wordData);
 
+/* =============DOING STUFF WITH THE PROVIDED DATA (FOR THE BAR CHARTS)==================== */
       // get the counts of filler words for the
       // bar chart display
       var fillerCounts = groupByWord(fillerWords);
@@ -132,6 +156,7 @@ var scrollVis = function () {
       var countMax = d3.max(fillerCounts, function (d) { return d.value;});
       xBarScale.domain([0, countMax]);
 
+/* =============DOING STUFF WITH THE PROVIDED DATA (FOR THE HISTOGRAM)==================== */
       // get aggregated histogram data
 
       var histData = getHistogram(fillerWords);
@@ -146,6 +171,9 @@ var scrollVis = function () {
   };
 
 
+
+
+/* =============THIS STUFF CREATES THE DRAWINGS==================== */
   /**
    * setupVis - creates initial elements for all
    * sections of the visualization.
@@ -156,6 +184,7 @@ var scrollVis = function () {
    * @param histData - binned histogram data
    */
   var setupVis = function (wordData, fillerCounts, histData) {
+/* =============CREATES THE AXIS==================== */
     // axis
     g.append('g')
       .attr('class', 'x axis')
@@ -163,38 +192,43 @@ var scrollVis = function () {
       .call(xAxisBar);
     g.select('.x.axis').style('opacity', 0);
 
+
+/* =============CREATES THE FIRST TITLE "10 People"==================== */
     // count openvis title
     g.append('text')
       .attr('class', 'title openvis-title')
       .attr('x', width / 2)
       .attr('y', height / 3)
-      .text('10');
+      .text('...');
 
     g.append('text')
       .attr('class', 'sub-title openvis-title')
       .attr('x', width / 2)
       .attr('y', (height / 3) + (height / 5))
-      .text('People');
+      .text('If you know 10 people its likely that...');
 
     g.selectAll('.openvis-title')
       .attr('opacity', 0);
 
+/* =============CREATES THE SECOND TITLE "6 of them live w/ a chronic illness"==================== */
     // count filler word count title
     g.append('text')
       .attr('class', 'title count-title highlight')
       .attr('x', width / 2)
       .attr('y', height / 3)
-      .text('6 of them');
+      .text('...');
 
     g.append('text')
       .attr('class', 'sub-title count-title')
       .attr('x', width / 2)
       .attr('y', (height / 3) + (height / 5))
-      .text('live w/ a chronic illness');
+      .text('...6 of them live w/ a chronic condition');
 
     g.selectAll('.count-title')
       .attr('opacity', 0);
 
+
+/* =============CREATES SQUARE GRID==================== */
     // square grid
     // @v4 Using .merge here to ensure
     // new and old data have same attrs applied
@@ -211,6 +245,7 @@ var scrollVis = function () {
       .attr('y', function (d) { return d.y;})
       .attr('opacity', 0);
 
+/* =============CREATES BAR CHART==================== */
     // barchart
     // @v4 Using .merge here to ensure
     // new and old data have same attrs applied
@@ -238,6 +273,7 @@ var scrollVis = function () {
       .attr('fill', 'white')
       .attr('opacity', 0);
 
+/* =============CREATES HISTOGRAM==================== */
     // histogram
     // @v4 Using .merge here to ensure
     // new and old data have same attrs applied
@@ -251,6 +287,7 @@ var scrollVis = function () {
       .attr('fill', barColors[0])
       .attr('opacity', 0);
 
+    /* =============CREATES COUGH TITLE==================== */
     // cough title
     g.append('text')
       .attr('class', 'sub-title cough cough-title')
@@ -259,6 +296,7 @@ var scrollVis = function () {
       .text('cough')
       .attr('opacity', 0);
 
+    /* =============CREATES COUGH ARROW==================== */
     // arrowhead from
     // http://logogin.blogspot.com/2013/02/d3js-arrowhead-markers.html
     svg.append('defs').append('marker')
@@ -281,6 +319,9 @@ var scrollVis = function () {
       .attr('opacity', 0);
   };
 
+
+
+/* =============ACTIVATES THE VISUALIZATIONS==================== */
   /**
    * setupSections - each section is activated
    * by a separate function. Here we associate
@@ -301,6 +342,8 @@ var scrollVis = function () {
     activateFunctions[7] = showCough;
     activateFunctions[8] = showHistAll;
 
+
+/* =============UPDATES CERTAIN SECTIONS==================== */
     // updateFunctions are called while
     // in a particular section to update
     // the scroll progress in that section.
@@ -313,6 +356,9 @@ var scrollVis = function () {
     updateFunctions[7] = updateCough;
   };
 
+
+/* =============CALLS AND ACTIVATES A SPECIFIC SECTION AS IT SCROLLS==================== */
+/* =============THIS IS THE TITLE SECTION==================== */
   /**
    * ACTIVATE FUNCTIONS
    *
@@ -348,6 +394,7 @@ var scrollVis = function () {
       .attr('opacity', 1.0);
   }
 
+  /* =============THIS HIDES THE TITLE SECTION AND SHOWS THE OTHER==================== */
   /**
    * showFillerTitle - filler counts
    *
@@ -373,6 +420,7 @@ var scrollVis = function () {
       .attr('opacity', 1.0);
   }
 
+  /* =============THIS SHOWS THE GRID==================== */
   /**
    * showGrid - square grid
    *
@@ -397,6 +445,8 @@ var scrollVis = function () {
       .attr('fill', '#ddd');
   }
 
+
+/* =============THIS HIGHLIGHTS SQUARES IN THE GRID==================== */
   /**
    * highlightGrid - show fillers in grid
    *
@@ -444,6 +494,8 @@ var scrollVis = function () {
       .attr('fill', function (d) { return d.filler ? '#008080' : '#ddd'; });
   }
 
+
+  /* =============THIS SHOWS THE BARCHART==================== */
   /**
    * showBar - barchart
    *
@@ -492,6 +544,8 @@ var scrollVis = function () {
       .attr('opacity', 1);
   }
 
+
+  /* =============THIS SHOWS THE HISTOGRAM-HALF==================== */
   /**
    * showHistPart - shows the first part
    *  of the histogram of filler words
@@ -525,6 +579,8 @@ var scrollVis = function () {
       .style('opacity', function (d) { return (d.x0 < 15) ? 1.0 : 1e-6; });
   }
 
+
+  /* =============THIS SHOWS THE HISTOGRAM-ALL==================== */
   /**
    * showHistAll - show all histogram
    *
@@ -559,6 +615,8 @@ var scrollVis = function () {
       .style('opacity', 1.0);
   }
 
+
+/* =============THIS SHOWS THE COUGH==================== */
   /**
    * showCough
    *
@@ -605,6 +663,8 @@ var scrollVis = function () {
       .style('opacity', 0);
   }
 
+
+/* =============THESE ARE TO ANIMATE/UPDATE WITHIN THE SECTION==================== */
   /**
    * UPDATE FUNCTIONS
    *
@@ -638,6 +698,8 @@ var scrollVis = function () {
       });
   }
 
+
+/* =============THIS IS MANIPULATING THE DATA TO USE FOR THE VIZ==================== */
   /**
    * DATA FUNCTIONS
    *
@@ -657,6 +719,8 @@ var scrollVis = function () {
    *
    * @param rawData - data read in from file
    */
+
+  /* =============THIS IS CODE TO FIND FILLER WORDS IN THE DATA==================== */
   function getWords(rawData) {
     return rawData.map(function (d, i) {
       // is this word a filler word?
@@ -687,6 +751,8 @@ var scrollVis = function () {
     return data.filter(function (d) {return d.filler; });
   }
 
+
+  /* =============THIS IS USING THE MANIPULATED DATA TO CREATE A HISTOGRAM==================== */
   /**
    * getHistogram - use d3's histogram layout
    * to generate histogram bins for our word data
@@ -724,6 +790,8 @@ var scrollVis = function () {
       .sort(function (a, b) {return b.value - a.value;});
   }
 
+
+  /* =============THIS IS ACTIVATING THE SECTION==================== */
   /**
    * activate -
    *
@@ -754,6 +822,8 @@ var scrollVis = function () {
 };
 
 
+
+/* =============SHOW VIZ AFTER DATA HAS BEEN LOADED==================== */
 /**
  * display - called once data
  * has been loaded.
@@ -792,5 +862,9 @@ function display(data) {
   });
 }
 
+
+
+
+/* =============THIS IS THE DATA==================== */
 // load data and display
 d3.tsv('data/words.tsv', display);
