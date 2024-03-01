@@ -105,7 +105,8 @@
 }
 
 #vis .sub-title {
-  font-size:80px;
+  /*font-size:80px;*/
+  font-size:30px;
   text-anchor: middle;
 }
 
@@ -117,7 +118,8 @@
 }
 
 .highlight {
-  fill: #008080;
+  fill: #FFA63D;
+  /*fill: #008080;*/
   font-weight: bold;
 }
 
