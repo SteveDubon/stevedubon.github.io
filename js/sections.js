@@ -199,7 +199,7 @@ var scrollVis = function () {
       .attr('class', 'title openvis-title')
       .attr('x', width / 2)
       .attr('y', height / 3)
-      .text('...');
+      /*.text('TITLE TEXT GOES HERE');*/
 
     g.append('text')
       .attr('class', 'sub-title openvis-title')
@@ -216,7 +216,7 @@ var scrollVis = function () {
       .attr('class', 'title count-title highlight')
       .attr('x', width / 2)
       .attr('y', height / 3)
-      .text('...');
+      /*.text('TITLE TEXT GOES HERE');*/
 
     g.append('text')
       .attr('class', 'sub-title count-title')
