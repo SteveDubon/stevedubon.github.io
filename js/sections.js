@@ -213,16 +213,16 @@ var scrollVis = function () {
 /* =============CREATES THE SECOND TITLE "6 of them live w/ a chronic illness"==================== */
     // count filler word count title
     g.append('text')
-      .attr('class', 'title count-title highlight')
+      .attr('class', 'title count-title highlight2')
       .attr('x', width / 2)
       .attr('y', height / 3)
-      /*.text('TITLE TEXT GOES HERE');*/
+      .text('...6 of them live w/ a chronic condition');
 
     g.append('text')
       .attr('class', 'sub-title count-title')
       .attr('x', width / 2)
       .attr('y', (height / 3) + (height / 5))
-      .text('...6 of them live w/ a chronic condition');
+      /*.text('...6 of them live w/ a chronic condition');*/
 
     g.selectAll('.count-title')
       .attr('opacity', 0);

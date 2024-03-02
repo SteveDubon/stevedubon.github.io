@@ -65,18 +65,18 @@
 
 .step {
   margin-bottom: 200px;
-  font-family: "TiemposTextWeb-Regular","Georgia";
+  font-family: "Plus Jakarta Sans", "TiemposTextWeb-Regular","Georgia";
   font-size: 16px;
   line-height: 23px;
-  color: #767678;
+  color: #2B2D37;
 }
 
 #sections .title {
-  font-family: Arial,Helvetica,"san-serif";
+  font-family: "Plus Jakarta Sans", Arial,Helvetica,"san-serif";
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 2px;
-  color: #262626;
+  color: #2B2D37;
   line-height: 1.2em;
 }
 
@@ -113,12 +113,18 @@
 .axis path,
 .axis line {
   fill: none;
-  stroke: #666;
+  stroke: #2B2D37;
   shape-rendering: crispEdges;
 }
 
 .highlight {
   fill: #FFA63D;
+  /*fill: #008080;*/
+  font-weight: bold;
+}
+
+.highlight2 {
+  fill: #2B2D37;
   /*fill: #008080;*/
   font-weight: bold;
 }
