@@ -339,9 +339,10 @@ var scrollVis = function () {
     activateFunctions[4] = showBar;
     activateFunctions[5] = showHistPart;
     activateFunctions[6] = showHistAll;
+    /*
     activateFunctions[7] = showCough;
     activateFunctions[8] = showHistAll;
-
+    */
 
 /* =============UPDATES CERTAIN SECTIONS==================== */
     // updateFunctions are called while
