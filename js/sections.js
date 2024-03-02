@@ -264,12 +264,12 @@ var scrollVis = function () {
     barText.enter()
       .append('text')
       .attr('class', 'bar-text')
-      .text(function (d) { return d.key + 'yrs'; })
+      .text(function (d) { return d.key + ' yrs'; })
       .attr('x', 0)
       .attr('dx', 15)
       .attr('y', function (d, i) { return yBarScale(i);})
       .attr('dy', yBarScale.bandwidth() / 1.2)
-      .style('font-size', '50px')
+      .style('font-size', '40px')
       .attr('fill', 'white')
       .attr('opacity', 0);
 
