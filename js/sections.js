@@ -59,7 +59,7 @@ var scrollVis = function () {
 
 /* =============BAR CHART COLORS==================== */
   // Color is determined just by the index of the bars
-  var barColors = { 0: '#008080', 1: '#399785', 2: '#5AAF8C' };
+  var barColors = { 0: '#FFA63D', 1: '#FF8E09', 2: '#D17100' };
 
 
 /* =============HISTOGRAM STUFF==================== */
@@ -84,7 +84,7 @@ var scrollVis = function () {
   // @v4 using new scale name
   var coughColorScale = d3.scaleLinear()
     .domain([0, 1.0])
-    .range(['#008080', 'red']);
+    .range(['#FFA63D', 'red']);
 
   // You could probably get fancy and
   // use just one axis, modifying the
@@ -491,7 +491,7 @@ var scrollVis = function () {
       .transition()
       .duration(800)
       .attr('opacity', 1.0)
-      .attr('fill', function (d) { return d.filler ? '#008080' : '#ddd'; });
+      .attr('fill', function (d) { return d.filler ? '#FFA63D' : '#ddd'; });
   }
 
 
@@ -605,7 +605,7 @@ var scrollVis = function () {
     g.selectAll('.hist')
       .transition('color')
       .duration(500)
-      .style('fill', '#008080');
+      .style('fill', '#FFA63D');
 
     g.selectAll('.hist')
       .transition()
@@ -694,7 +694,7 @@ var scrollVis = function () {
       .transition('cough')
       .duration(0)
       .style('fill', function (d) {
-        return (d.x0 >= 14) ? coughColorScale(progress) : '#008080';
+        return (d.x0 >= 14) ? coughColorScale(progress) : '#FFA63D';
       });
   }
 
