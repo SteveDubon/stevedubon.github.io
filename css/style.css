@@ -135,13 +135,3 @@
 
 }
 
-
-.pie-slice {
-  stroke: white;
-  stroke-width: 2px;
-}
-
-.pie-chart-label {
-  font-size: 12px;
-  fill: white;
-}
