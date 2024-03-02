@@ -170,8 +170,12 @@ var scrollVis = function () {
     });
   };
 
-
-
+/* =============PIE GRAPH TEST ENDS HERE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++==================== */
+const data = [
+  {status: "CHR Achieved", value: 99},
+  {status: "CHR Not Achieved", value: 1}
+];
+/* =============PIE GRAPH TEST ENDS HERE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++==================== */
 
 /* =============THIS STUFF CREATES THE DRAWINGS==================== */
   /**
@@ -317,6 +321,22 @@ var scrollVis = function () {
         return line;
       })
       .attr('opacity', 0);
+
+
+      /* =============PIE GRAPH TEST ENDS HERE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++==================== */
+    // Create a pie generator
+    const pie = d3.pie()
+      .value(function(d) { return d.value; })
+      .sort(null);
+
+    // Define the arc
+    const arc = d3.arc()
+      .innerRadius(0)
+      .outerRadius(radius);
+
+    // Define the color scale
+    const color = d3.scaleOrdinal(["#4daf4a", "#e41a1c"]);
+      /* =============PIE GRAPH TEST ENDS HERE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++==================== */
   };
 
 
@@ -339,6 +359,9 @@ var scrollVis = function () {
     activateFunctions[4] = showBar;
     activateFunctions[5] = showHistPart;
     activateFunctions[6] = showHistAll;
+    /* =============PIE GRAPH TEST ENDS HERE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++==================== */
+    activateFunctions[7] = showPie;
+    /* =============PIE GRAPH TEST ENDS HERE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++==================== */
     /*
     activateFunctions[7] = showCough;
     activateFunctions[8] = showHistAll;
@@ -615,6 +638,28 @@ var scrollVis = function () {
       .attr('height', function (d) { return height - yHistScale(d.length); })
       .style('opacity', 1.0);
   }
+
+
+/* =============PIE GRAPH TEST +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++==================== */
+  function showPie(){
+    g.selectAll('path')
+      .data(pie(data))
+      .enter().append('path')
+      .attr('d', arc)
+      .attr('fill', function(d, i) { return color(i); })
+      .attr('class', 'pie-slice');
+  }
+/* =============PIE GRAPH TEST ENDS HERE+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++==================== */
+
+
+
+
+
+
+
+
+
+
 
 
 /* =============THIS SHOWS THE COUGH==================== */
