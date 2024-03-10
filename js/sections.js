@@ -336,10 +336,10 @@ var scrollVis = function () {
     activateFunctions[2] = showGrid;
     activateFunctions[3] = highlightGrid;
     activateFunctions[4] = showBar;
-    activateFunctions[5] = showHistPart;
-    activateFunctions[6] = showHistAll;
 
     /*
+    activateFunctions[5] = showHistPart;
+    activateFunctions[6] = showHistAll;
     activateFunctions[7] = showCough;
     activateFunctions[8] = showHistAll;
     */
